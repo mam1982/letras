@@ -1,0 +1,421 @@
+<html>
+<style>
+	
+	ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+	}
+	
+	button {
+		cursor: pointer;
+	}
+	
+	.main {
+		background: #99d9ea;
+	}
+	
+	.target {
+		width: 250px;
+		display: inline-block;
+		position: relative;
+		border: 1px solid;
+		padding: 5px;
+		margin-right: 5px;
+		margin-bottom: 5px;
+		background: white;
+	}
+	
+	.target ul {
+		border: 1px solid;
+		width: 120px;
+		height: 50px;
+		display: inline-block;
+		margin-right: 3px;
+		vertical-align: top;
+		background: white;
+	}
+	
+	.letras li {
+		display: inline-block;
+		width: 120px;
+		height: 50px;
+		border: 1px solid;
+		margin-right: 10px;
+		background: white;
+	}
+	.target li {
+		width: 120px;
+		height: 50px;
+	}
+	
+	.letras img, .target img {
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		pointer-events: none;
+	}
+	
+	.target img {
+		margin-bottom: 5px;
+	}
+	
+	.hidden {
+		width: 0;
+		height: 0;
+		color: transparent;
+	}
+	
+	.images {
+		width: 100px;
+		height: 100px;
+	}
+	
+	.letras {
+		margin-bottom: 10px;
+	}
+	
+	.letras:last-child {
+		margin-bottom: 0;
+	}
+	
+	.bien, .mal, .add {
+		position: fixed;
+		top: 100px;
+		left: 100px;
+		border: 2px solid #999;
+		border-radius: 4px;
+		box-shadow: 4px 4px 5px 0 rgba(0,0,0,0.3);
+		background: white;
+		z-index: 10;
+	}
+	
+	.bien img, .mal img {
+		width: 500px;
+		height: 350px;
+		border: 5px solid #e9e9e9;
+	}
+	
+	.bien .title, .mal .title, .add .title  {
+		background-image: linear-gradient(to bottom, #5281C4, #223e65);
+		font-size: 20px;
+		font-weight: 700;
+		font-family: Arial, sans-serif;
+		color: white;
+		padding: 10px;
+		text-align: center;
+	}
+	
+	.bien .footer, .mal .footer, .add .footer {
+		background-image: linear-gradient(to bottom, #e5e5e5, #ffffff);
+		padding: 10px;
+		border-top: 1px solid #999999;
+		text-align: right;
+	}
+	
+	.bien .footer button, .mal .footer button, .add .footer button {
+		background-image: linear-gradient(to bottom, #5281C4, #223e65);
+		font-family: Arial, sans-serif;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		padding: 10px 20px;		
+	}
+	
+	.mal .title  {
+		background-image: linear-gradient(to bottom, #ffc6c6, #ff0000);
+	}
+	
+	.mal .footer button {
+		background-image: linear-gradient(to bottom, #ffc6c6, #ff0000);
+	}
+	
+	.letras-container {
+		display: inline-block;
+		padding: 47px 63px 63px 63px;
+		width: 676px;
+		margin-bottom: 10px;
+		margin-right: 10px;
+		background-image: url(pizarron51.png);
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+	
+	.objetos-container {
+		display: inline-block;
+		width: calc(100% - 818px);
+		vertical-align: top;
+		height: 474px;
+		min-width;
+		background-image: url(pared.png);
+		background-size: 100% 100%;
+	}
+	
+	.objetos-added {
+		min-height: 174px;
+		width: 100%;
+		background-image: url(bancos.png);
+		background-size: 100% 100%;
+	}
+	
+	.objetos-added1 {
+		width: 100%;
+		background-image: url(bancos2.png);
+		background-size: 100% 100%;
+	}
+	
+	.add-button {
+		background-image: linear-gradient(to bottom, #5281C4, #223e65);
+		font-family: Arial, sans-serif;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		padding: 0 16px;
+		font-size: 40px;
+		font-weight: 700;
+		position: fixed;
+		right: 10px;
+	}
+	
+	.add-container {
+		height: 80px;
+		width: 500px;
+		padding: 20px;
+	}
+	
+	.add-container label {
+		display: inline-block;
+		width: 130px;
+		margin-bottom: 20px;
+	}
+	
+	.add-container input {
+		width: 300px;
+	}
+	
+	.close {
+		position: absolute;
+		right: 0;
+		background: transparent;
+		border: 0;
+	}
+	
+	.borrar {
+		margin-right: 10px;
+	}
+	
+</style>
+
+<body>
+	<div class="main">
+		<button class="add-button" onClick="showAdd()">+</button>
+		<div class="letras-container">
+			<ul class="letras">
+				<li id="ma" draggable="true" ondragstart="drag(event)"><div class="hidden">ma</div><img src="ma.png"></img></li>
+				<li id="me" draggable="true" ondragstart="drag(event)"><div class="hidden">me</div><img src="me.png"></img></li>
+				<li id="mi" draggable="true" ondragstart="drag(event)"><div class="hidden">mi</div><img src="mi.png"></img></li>
+				<li id="mo" draggable="true" ondragstart="drag(event)"><div class="hidden">mo</div><img src="mo.png"></img></li>
+				<li id="mu" draggable="true" ondragstart="drag(event)"><div class="hidden">mu</div><img src="mu.png"></img></li>
+			</ul>
+			<ul class="letras">
+				<li id="da" draggable="true" ondragstart="drag(event)"><div class="hidden">da</div><img src="da.png"></img></li>
+				<li id="de" draggable="true" ondragstart="drag(event)"><div class="hidden">de</div><img src="de.png"></img></li>
+				<li id="di" draggable="true" ondragstart="drag(event)"><div class="hidden">di</div><img src="di.png"></img></li>
+				<li id="do" draggable="true" ondragstart="drag(event)"><div class="hidden">do</div><img src="do.png"></img></li>
+				<li id="du" draggable="true" ondragstart="drag(event)"><div class="hidden">du</div><img src="du.png"></img></li>
+			</ul>
+			<ul class="letras">
+				<li id="pa" draggable="true" ondragstart="drag(event)"><div class="hidden">pa</div><img src="pa.png"></img></li>
+				<li id="pe" draggable="true" ondragstart="drag(event)"><div class="hidden">pe</div><img src="pe.png"></img></li>
+				<li id="pi" draggable="true" ondragstart="drag(event)"><div class="hidden">pi</div><img src="pi.png"></img></li>
+				<li id="po" draggable="true" ondragstart="drag(event)"><div class="hidden">po</div><img src="po.png"></img></li>
+				<li id="pu" draggable="true" ondragstart="drag(event)"><div class="hidden">pu</div><img src="pu.png"></img></li>
+			</ul>
+			<ul class="letras">
+				<li id="ta" draggable="true" ondragstart="drag(event)"><div class="hidden">ta</div><img src="ta.png"></img></li>
+				<li id="te" draggable="true" ondragstart="drag(event)"><div class="hidden">te</div><img src="te.png"></img></li>
+				<li id="ti" draggable="true" ondragstart="drag(event)"><div class="hidden">ti</div><img src="ti.png"></img></li>
+				<li id="to" draggable="true" ondragstart="drag(event)"><div class="hidden">to</div><img src="to.png"></img></li>
+				<li id="tu" draggable="true" ondragstart="drag(event)"><div class="hidden">tu</div><img src="tu.png"></img></li>
+			</ul>
+			<ul class="letras">
+				<li id="la" draggable="true" ondragstart="drag(event)"><div class="hidden">la</div><img src="la.png"></img></li>
+				<li id="le" draggable="true" ondragstart="drag(event)"><div class="hidden">le</div><img src="le.png"></img></li>
+				<li id="li" draggable="true" ondragstart="drag(event)"><div class="hidden">li</div><img src="li.png"></img></li>
+				<li id="lo" draggable="true" ondragstart="drag(event)"><div class="hidden">lo</div><img src="lo.png"></img></li>
+				<li id="lu" draggable="true" ondragstart="drag(event)"><div class="hidden">lu</div><img src="lu.png"></img></li>
+			</ul>
+			<ul class="letras">
+				<li id="sa" draggable="true" ondragstart="drag(event)"><div class="hidden">sa</div><img src="sa.png"></img></li>
+				<li id="se" draggable="true" ondragstart="drag(event)"><div class="hidden">se</div><img src="se.png"></img></li>
+				<li id="si" draggable="true" ondragstart="drag(event)"><div class="hidden">si</div><img src="si.png"></img></li>
+				<li id="so" draggable="true" ondragstart="drag(event)"><div class="hidden">so</div><img src="so.png"></img></li>
+				<li id="su" draggable="true" ondragstart="drag(event)"><div class="hidden">su</div><img src="su.png"></img></li>
+			</ul>
+		</div>
+		<div class="objetos-container">
+			<div id="objetos"></div>
+		</div>
+		<div id="bien" class="bien">
+			<div class="title">EXCELENTE!!!</div>
+			<img id="f1" src="fortnite1.gif" style="display: none;"></img>
+			<img id="f2" src="fortnite2.gif" style="display: none;"></img>
+			<img id="f3" src="fortnite3.gif" style="display: none;"></img>
+			<img id="f4" src="fortnite4.gif" style="display: none;"></img>
+			<img id="f5" src="fortnite5.gif" style="display: none;"></img>
+			<img id="f6" src="fortnite6.gif" style="display: none;"></img>
+			<img id="f7" src="fortnite7.gif" style="display: none;"></img>
+			<div class="footer"><button onClick="closeResultDialog()">OK</button></div>
+		</div>
+		<div id="mal" class="mal">
+			<div class="title">NO NO NO!!!</div>
+			<img id="n1" src="no1.gif" style="display: none;"></img>
+			<img id="n2" src="no2.gif" style="display: none;"></img>
+			<img id="n3" src="no3.gif" style="display: none;"></img>
+			<img id="n4" src="no4.gif" style="display: none;"></img>
+			<img id="n5" src="no5.gif" style="display: none;"></img>
+			<div class="footer"><button onClick="closeResultNoDialog()">OK</button></div>
+		</div>
+		<div id="add" class="add">
+			<div class="title">Agregar objeto</div>
+			<div class="add-container">
+				<div><label>Nombre Objeto</label><input id="add-nombre"></input></div>
+				<div><label>Url Imagen</label><input id="add-url"></input></div>
+			</div>
+			<div class="footer"><button onClick="clearInputs()" class="borrar">Borrar</button><button onClick="addObject()">OK</button></div>
+		</div>
+		<div id="objetos-added" class="objetos-added">
+		</div>
+	</div>
+<body>
+<script>
+	var fImage = 1;
+	var nImage = 1;
+	document.getElementById('bien').style.display = 'none';
+	document.getElementById('mal').style.display = 'none';
+	document.getElementById('add').style.display = 'none';
+	
+	function allowDrop(ev) {
+		ev.preventDefault();
+	}
+	
+	function drop(ev){
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData('text');
+		var node = document.getElementById(data);
+		var target = ev.target;
+		if (target.nodeName === 'LI'){
+			target = ev.target.parentNode;
+		}
+		target.innerHTML = '';
+		target.appendChild(node.cloneNode(true));
+		var text = target.parentNode.innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/\s/g, '').substr(1);
+		var text2 = target.parentNode.id;
+		if (text === text2) {
+			showResultDialog();
+		}
+		else {
+			if (text.length === 4) {
+				showResultNoDialog();
+			}
+		}
+	}
+	
+	function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.id);
+	}
+	
+	function showResultDialog(){
+		document.getElementById('f' + fImage).style.display = 'none';
+		fImage++;
+		if (fImage === 8){
+			fImage = 1;
+		}
+		document.getElementById('f' + fImage).style.display = 'block';
+		document.getElementById('bien').style.display = 'block';
+	}
+	
+	function closeResultDialog() {
+		document.getElementById('bien').style.display = 'none';
+	}
+	
+	function showResultNoDialog(){
+		document.getElementById('n' + nImage).style.display = 'none';
+		nImage++;
+		if (nImage === 6){
+			nImage = 1;
+		}
+		document.getElementById('n' + nImage).style.display = 'block';
+		document.getElementById('mal').style.display = 'block';
+	}
+	
+	function closeResultNoDialog() {
+		document.getElementById('mal').style.display = 'none';
+	}
+	
+	function showAdd() {
+		document.getElementById('add').style.display = 'block';
+	}
+	
+	function addObject(){
+		var nombre = document.getElementById('add-nombre').value;
+		var url = document.getElementById('add-url').value;
+		var html = '<div id="' + nombre + '" class="target"><button class="close" onClick="removeObject(this)">X</button><img src="' + url + '" class="images"></img><ul id="ul1" ondrop="drop(event)" ondragover="allowDrop(event)">	</ul><ul id="ul2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul></div>';
+		var div = document.createElement('div');
+		div.innerHTML = html.trim();
+		var objetos = document.getElementById('objetos');
+		objetos.appendChild(div.firstChild);
+		if (objetos.offsetHeight > 362) {
+			objetos.removeChild(objetos.lastChild);
+			var newDiv = document.getElementById('objetos-added');
+			var newObjectDiv = document.createElement('div');
+			newObjectDiv.innerHTML = html.trim();			
+			newDiv.appendChild(newObjectDiv.firstChild);
+			if (newDiv.offsetHeight > 174) {
+				newDiv.removeChild(newDiv.lastChild);
+				insertOnNextObjectContainer(html, newDiv);
+			}
+		}
+		document.getElementById('add').style.display = 'none';
+	}
+	
+	function insertOnNextObjectContainer(html, addedDiv) {
+		var i = 1;
+		var div = document.getElementById('objetos-added' + i);
+		var entra = false;
+		while (div && !entra) {
+			var newObjectDiv = document.createElement('div');
+			newObjectDiv.innerHTML = html.trim();			
+			div.appendChild(newObjectDiv.firstChild);
+			if (div.offsetHeight > 174) {
+				div.removeChild(div.lastChild);
+				i++;
+				div = document.getElementById('objetos-added' + i);
+			}
+			else {
+				entra = true;
+			}
+		}
+		if (!div) {
+			div = document.createElement('div');
+			div.id = 'objetos-added' + i;
+			div.className = 'objetos-added1';
+			var newObjectDiv2 = document.createElement('div');
+			newObjectDiv2.innerHTML = html.trim();			
+			div.appendChild(newObjectDiv2.firstChild);
+			addedDiv.parentNode.appendChild(div);
+		}
+	}
+	
+	function removeObject(el) {
+		el.parentNode.remove();
+	}
+	
+	function clearInputs() {
+		document.getElementById('add-nombre').value = '';
+		document.getElementById('add-url').value = '';
+	}
+	 
+</script>
+</html>
